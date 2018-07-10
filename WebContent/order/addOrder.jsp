@@ -65,9 +65,9 @@
 %>
 <body>
 	<jsp:include page="../menu/menu.jsp"></jsp:include>
-	
+
 	<div class="container">
-	<ul class="breadcrumb">
+		<ul class="breadcrumb">
 			<li><a href="index.jsp">Trang chủ</a></li>
 			<li><a href="showOrder.jsp">Quản lý đơn hàng</a></li>
 			<li><a href="#">Thêm đơn đặt hàng</a></li>
@@ -97,9 +97,6 @@
 					<h4>Đơn hàng đã chọn</h4>
 					<%
 						String orderId = (String) session.getAttribute("addOrderId");
-					%>
-
-					<%
 						String orderDate = "";
 						String customerId = "";
 						String totalPrice = "";
@@ -113,13 +110,11 @@
 						if (order != null) {
 							orderDate = OrderDAO.orderMap.get(order.getOrderId()).getOrderDate();
 							customerId = OrderDAO.orderMap.get(order.getOrderId()).getCustomerId();
-
 							if (mapTotalPrice.get(order.getOrderId()) == null) {
 								totalPrice = "0 &#8363;";
 							} else {
 								totalPrice = mapTotalPrice.get(order.getOrderId());
 							}
-
 						}
 					%>
 					<p>
