@@ -57,8 +57,8 @@
 				<tr>
 					<th>STT</th>
 					<th>Tên sản phẩm</th>
-					<th>Giá sản phẩm</th>
-					<th>Mã nhà cung cấp - Tên NCC</th>
+					<th>Giá bán</th>
+					<th>Tên nhà cung cấp</th>
 					<th>Chức năng</th>
 				</tr>
 			</thead>
@@ -76,7 +76,7 @@
 							price = ThousandSeparator.thousandSeparator(price) + " &#8363;";
 					%>
 					<td><%=price%></td>
-					<td><%=product.getProducerID()%> - <%=ProducerDAO.producerMap.get(product.getProducerID()).getProducerName()%></td>
+					<td><%=ProducerDAO.producerMap.get(product.getProducerID()).getProducerName()%></td>
 					<td><a
 						href="product?function=edit&id=<%=product.getProductID()%>"><button
 								class="btn btn-primary btn-sm">Sửa</button></a> <a

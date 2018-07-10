@@ -57,7 +57,6 @@
 					<th>STT</th>
 					<th>Tên</th>
 					<th>Tài khoản</th>
-					<th>Mật khẩu</th>
 					<th>Số điện thoại</th>
 					<th>Chức năng</th>
 				</tr>
@@ -72,7 +71,6 @@
 					<td><%=count%></td>
 					<td><%=customer.getCustomerName()%></td>
 					<td><%=customer.getUserName()%></td>
-					<td><%=customer.getPassWord()%></td>
 					<td><%=customer.getPhoneNumber()%></td>
 					<td><a
 						href="customer?function=edit&id=<%=customer.getCustomerID()%>"><button

@@ -22,11 +22,9 @@ public class OrderItemDAO implements ObjectDAO {
 			ResultSet rs = ConnectDTB.chonDuLieu(query);
 			while (rs.next()) {
 				String orderId = rs.getString(1);
-				System.out.println(orderId);
 				String totalPrice = rs.getString(2);
 				totalPrice = ThousandSeparator.thousandSeparator(totalPrice);
 				totalPrice = totalPrice + " \u20AB";
-				System.out.println(totalPrice);
 				res.put(orderId, totalPrice);
 			}
 			return res;
@@ -124,13 +122,13 @@ public class OrderItemDAO implements ObjectDAO {
 		return null;
 	}
 
-	public static void main(String[] args) {
-		OrderItemDAO dao = new OrderItemDAO();
+	//public static void main(String[] args) {
+		//OrderItemDAO dao = new OrderItemDAO();
 		//dao.getOrderItemByOrderId("OD1632");
 		// OrderItem order = new OrderItem("OD1", "P1", "10", "O1");
 		// dao.add(order);
 		// dao.edit(order);
 		// dao.delete("OD1");
-	}
+	//}
 
 }

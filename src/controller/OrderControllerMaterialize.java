@@ -21,11 +21,11 @@ import model.OrderItem;
 /**
  * Servlet implementation class OrderController
  */
-@WebServlet("/order")
-public class OrderController extends HttpServlet {
+@WebServlet("/orderOld")
+public class OrderControllerMaterialize extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public OrderController() {
+	public OrderControllerMaterialize() {
 		super();
 	}
 
@@ -39,6 +39,10 @@ public class OrderController extends HttpServlet {
 			break;
 		case "delete":
 			deleteOrder(request, response);
+			break;
+		case "selectCustomer":
+			RequestDispatcher selectDispatcher = request.getRequestDispatcher("order/addOrder.jsp");
+			selectDispatcher.forward(request, response);
 			break;
 		case "detail":
 			RequestDispatcher detailDispatcher = request.getRequestDispatcher("order/detailOrder.jsp");
@@ -55,29 +59,29 @@ public class OrderController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String func = request.getParameter("function");
-		switch (func) {
-		case "selectCustomer":
-			String customerId = request.getParameter("customerId");
-			String orderDate = request.getParameter("orderDate");
-			String orderId = IdGenerator.IDGen("OD");
-			new OrderDAO().add(new Order(orderId, orderDate, customerId));
-			//
-			request.getSession().setAttribute("addOrderId", orderId);
-			RequestDispatcher selectDispatcher = request.getRequestDispatcher("order/addOrder.jsp");
-			selectDispatcher.forward(request, response);
-			break;
-		
-		case "addItem":
-			String orderIdAdd = (String) request.getSession().getAttribute("addOrderId");
-			String productId = request.getParameter("productId");
-			String quantity = request.getParameter("quantity");
-			String orderItemId = IdGenerator.IDGen("ODI");
-			OrderItem item = new OrderItem(orderItemId, productId, quantity, orderIdAdd);
-			new OrderItemDAO().add(item);
+		String customerId = (String) request.getSession().getAttribute("id");
+		String orderDate = (String) request.getSession().getAttribute("date");
+		if (customerId == "" || orderDate == "") {
 			RequestDispatcher addDispatcher = request.getRequestDispatcher("order/addOrder.jsp");
 			addDispatcher.forward(request, response);
-			break;
+		} else {
+			String orderId = IdGenerator.IDGen("OD");
+			Order order = new Order(orderId, orderDate, customerId);
+			new OrderDAO().add(order);
+			// add order item
+			String[] listProductId = request.getParameterValues("productId");
+			String[] listQuantity = request.getParameterValues("quantity");
+			if (listProductId == null) {
+				System.out.println("No product info");
+			} else {
+				for (int i = 0; i < listProductId.length; i++) {
+					// id random 100 -1000
+					String orderItemId = IdGenerator.IDGen("ODI");
+					OrderItem item = new OrderItem(orderItemId, listProductId[i], listQuantity[i], orderId);
+					new OrderItemDAO().add(item);
+				}
+			}
+			response.sendRedirect("showOrder.jsp");
 		}
 	}
 }

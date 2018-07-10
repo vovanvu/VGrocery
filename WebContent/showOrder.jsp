@@ -7,7 +7,7 @@
 <%@page import="java.util.Map"%>
 <%@ page import="java.util.Set"%>
 <%
-	Map<String, Order> mapOrder = OrderDAO.orderMap;
+	Map<String, Order> mapOrder = OrderDAO.getLoadOrderDTB();
 	//get customerName map
 	Map<String, Customer> mapCustomer = CustomerDAO.customerMap;
 	//get orderDate set
@@ -46,7 +46,7 @@
 <body>
 	<jsp:include page="menu/menu.jsp"></jsp:include>
 	<div class="container">
-	<ul class="breadcrumb">
+		<ul class="breadcrumb">
 			<li><a href="index.jsp">Trang chủ</a></li>
 			<li><a href="#">Quản lý đơn hàng</a></li>
 		</ul>
@@ -109,9 +109,13 @@
 							}
 					%>
 					<td><%=total%></td>
-					<td> <a
+					<td>		<a
+						href="customer?function=edit&id=<%=order.getOrderId()%>"><button
+								class="btn btn-primary btn-sm">Sửa</button></a> 
+								<a
 						href="order?function=delete&id=<%=order.getOrderId()%>"><button
-								class="btn btn-warning btn-sm">Xoá</button></a> <a
+								class="btn btn-warning btn-sm">Xoá</button></a>
+								 <a
 						href="order?function=detail&id=<%=order.getOrderId()%>"><button
 								class="btn btn-default btn-sm">Chi tiết</button></a></td>
 

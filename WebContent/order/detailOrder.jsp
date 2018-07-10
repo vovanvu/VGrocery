@@ -58,19 +58,16 @@
 			<li><a href="showOrder.jsp">Quản lý đơn hàng</a></li>
 			<li><a href="#">Thông tin đơn đặt hàng</a></li>
 		</ul>
-		<h2>Thông tin đơn đặt hàng</h2>
 		<%
 			Order order = OrderDAO.orderMap.get(id);
 		%>
-		<h4>
-			Mã đơn hàng:
-			<%=order.getOrderId()%></h4>
-		<h4>
+		<h2>Thông tin đơn đặt hàng: #<%=order.getOrderId()%></h2>
+		<p>
 			Ngày đặt hàng:
-			<%=order.getOrderDate()%></h4>
-		<h4>
+			<%=order.getOrderDate()%></p>
+		<p>
 			Tổng giá trị đơn hàng:
-			<%=mapTotalPrice.get(order.getOrderId())%></h4>
+			<%=mapTotalPrice.get(order.getOrderId())%></p>
 		<!-- order item datatable -->
 		<table id="datatable-buttons"
 			class="table table-striped table-bordered">
@@ -81,7 +78,6 @@
 					<th>Số lượng</th>
 					<th>Đơn giá</th>
 					<th>Thành tiền</th>
-					<th>Chức năng</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -99,13 +95,6 @@
  %>
 					<td><%=price%></td>
 					<td><%=mapTotalItemPrice.get(orderItem.getOrderItemId())%></td>
-					<td><a
-						href="orderItem?function=edit&id=<%=orderItem.getOrderItemId()%>"><button
-								class="btn btn-primary btn-sm">Sửa</button></a> <a
-						href="orderItem?function=delete&id=<%=orderItem.getOrderItemId()%>"><button
-								class="btn btn-warning btn-sm">Xoá</button></a> <a
-						href="orderItem?function=detail&id=<%=orderItem.getOrderItemId()%>"><button
-								class="btn btn-default btn-sm">Chi tiết</button></a></td>
 
 				</tr>
 				<%

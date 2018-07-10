@@ -117,6 +117,7 @@ public class OrderDAO implements ObjectDAO {
 	@Override
 	public boolean delete(String id) {
 		orderMap.remove(id);
+		//first delete order item with this orderId (sql1) then delete order (sql2)
 		String sql1 = "delete from OrderItem where OrderId='" + id + "'";
 		String sql2 = "delete from Orders where OrderId='" + id + "'";
 		try {
