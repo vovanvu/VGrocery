@@ -61,16 +61,30 @@
 				<label class="control-label col-sm-3" for="producerID">Mã
 					nhà cung cấp</label>
 				<div class="col-sm-6 ">
-					<input type="text" class="form-control" id="producerID"
+					<select name="producerID" class="form-control">
+						<option value="<%=product.getProducerID()%>" selected hidden><%=ProducerDAO.producerMap.get(product.getProducerID()).getProducerName() %></option>
+						<%
+							for (Producer producer : ProducerDAO.producerMap.values()) {
+						%>
+						<option value="<%=producer.getProducerID()%>"><%=producer.getProducerName()%></option>
+						<%
+							}
+						%>
+
+					</select>
+
+
+
+					<%--<input type="text" class="form-control" id="producerID"
 						placeholder="Nhập mã nhà cung cấp" list="listProducer"
-						name="producerID" value="<%=product.getProducerID()%>">
-					<datalist id="listProducer"> <%
+						name="producerID" value="<%=product.getProducerID()%>"> --%>
+					<%--<datalist id="listProducer"> <%
  	for (Producer producer : ProducerDAO.producerMap.values()) {
  %>
 					<option value="<%=producer.getProducerID()%>"><%=producer.getProducerName()%></option>
 					<%
 						}
-					%> </datalist>
+					%> </datalist> --%>
 					<p id="error_producerID"></p>
 				</div>
 			</div>

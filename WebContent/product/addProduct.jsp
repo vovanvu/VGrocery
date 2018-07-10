@@ -22,7 +22,7 @@
 <body>
 	<jsp:include page="../menu/menu.jsp"></jsp:include>
 	<div class="container">
-	<ul class="breadcrumb">
+		<ul class="breadcrumb">
 			<li><a href="index.jsp">Trang chủ</a></li>
 			<li><a href="showProduct.jsp">Quản lý sản phẩm</a></li>
 			<li><a href="#">Thêm sản phẩm</a></li>
@@ -50,13 +50,23 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="producerID">Mã
+				<label class="control-label col-sm-3" for="producerID">Tên
 					nhà cung cấp</label>
 				<div class="col-sm-6 ">
-					<input type="text" class="form-control" id="producerID"
+					<%--<input type="text" class="form-control" id="producerID"
 						placeholder="Nhập mã nhà cung cấp" list="listProducer"
-						name="producerID" value="${producerID}">
+						name="producerID" value="${producerID}"> --%>
+					<select name="producerID" class="form-control">
+					<option value="" selected disabled hidden>Chọn nhà cung cấp</option>
+						<%
+							for (Producer producer : ProducerDAO.producerMap.values()) {
+						%>
+						<option value="<%=producer.getProducerID()%>"><%=producer.getProducerName()%></option>
+						<%
+							}
+						%>
 
+					</select>
 					<p id="error_producerID"></p>
 				</div>
 			</div>
@@ -65,13 +75,16 @@
 					<button type="submit" class="btn btn-primary">Thêm</button>
 				</div>
 			</div>
-			<datalist id="listProducer"> <%
+
+
+			<%--
+		<datalist id="listProducer"> <%
  	for (Producer producer : ProducerDAO.producerMap.values()) {
  %>
 			<option value="<%=producer.getProducerID()%>"><%=producer.getProducerName()%></option>
 			<%
 				}
-			%> </datalist>
+			%> </datalist> --%>
 		</form>
 	</div>
 	<!-- end container -->

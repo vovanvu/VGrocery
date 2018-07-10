@@ -92,7 +92,7 @@
 					<%
 						}
 					%> </datalist>
-					<button type="submit" class="btn btn-default">Tạo đơn hàng
+					<button type="submit" class="btn btn-success">Tạo đơn hàng
 						mới</button>
 					<h4>Đơn hàng đã chọn</h4>
 					<%
@@ -147,11 +147,11 @@
 						<label for="quantity">Số lượng</label> <input class="form-control"
 							type="number" name="quantity" min="1" id="quantity" value="1">
 					</div>
-					<button type="submit" class="btn btn-default">Thêm sản
+					<button type="submit" class="btn btn-success">Thêm sản
 						phẩm</button>
 				</form>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-8">
 				<h2>
 					Thông tin đơn đặt hàng:
 					<%=orderId%></h2>
