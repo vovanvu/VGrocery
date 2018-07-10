@@ -72,8 +72,7 @@ public class OrderController extends HttpServlet {
 				//
 				request.getSession().setAttribute("addOrderId", orderId);
 			}
-			RequestDispatcher selectDispatcher = request.getRequestDispatcher("order/addOrder.jsp");
-			selectDispatcher.forward(request, response);
+			response.sendRedirect("order?function=add");
 			break;
 
 		case "addItem":
@@ -85,8 +84,7 @@ public class OrderController extends HttpServlet {
 				OrderItem item = new OrderItem(orderItemId, productId, quantity, orderIdAdd);
 				new OrderItemDAO().add(item);
 			}
-			RequestDispatcher addDispatcher = request.getRequestDispatcher("order/addOrder.jsp");
-			addDispatcher.forward(request, response);
+			response.sendRedirect("order?function=add");
 			break;
 		}
 	}
