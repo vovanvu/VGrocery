@@ -65,7 +65,13 @@
 %>
 <body>
 	<jsp:include page="../menu/menu.jsp"></jsp:include>
+	
 	<div class="container">
+	<ul class="breadcrumb">
+			<li><a href="index.jsp">Trang chủ</a></li>
+			<li><a href="showOrder.jsp">Quản lý đơn hàng</a></li>
+			<li><a href="#">Thêm đơn đặt hàng</a></li>
+		</ul>
 		<div class="row">
 			<div class="col-md-2">
 				<form action="order?function=selectCustomer" method="post">
@@ -86,40 +92,46 @@
 					<%
 						}
 					%> </datalist>
-					<button type="submit" class="btn btn-default">Tạo đơn
-						hàng mới</button>
-						<p>*Nhấn tạo đơn hàng mới để thay đổi đơn hàng hiện tại thành đơn
-						hàng mới</p>
-					<h4>Đơn hàng hiện tại</h4>
+					<button type="submit" class="btn btn-default">Tạo đơn hàng
+						mới</button>
+					<h4>Đơn hàng đã chọn</h4>
 					<%
 						String orderId = (String) session.getAttribute("addOrderId");
 					%>
-					<p>
-						Mã đơn:
-						<%=orderId%></p>
+
 					<%
 						String orderDate = "";
 						String customerId = "";
 						String totalPrice = "";
 						Order order = OrderDAO.orderMap.get(orderId);
 						if (order == null) {
+							orderId = "Chưa chọn";
 							orderDate = "Chưa chọn";
 							customerId = "Chưa chọn";
-							totalPrice = "Chưa chọn";
+							totalPrice = "0 &#8363;";
 						}
 						if (order != null) {
 							orderDate = OrderDAO.orderMap.get(order.getOrderId()).getOrderDate();
 							customerId = OrderDAO.orderMap.get(order.getOrderId()).getCustomerId();
-							totalPrice = mapTotalPrice.get(order.getOrderId());
+
+							if (mapTotalPrice.get(order.getOrderId()) == null) {
+								totalPrice = "0 &#8363;";
+							} else {
+								totalPrice = mapTotalPrice.get(order.getOrderId());
+							}
+
 						}
 					%>
+					<p>
+						Mã đơn:
+						<%=orderId%></p>
 					<p>
 						Ngày đặt:
 						<%=orderDate%></p>
 					<p>
 						Mã khách hàng:
 						<%=customerId%></p>
-					
+
 				</form>
 			</div>
 			<div class="col-md-2">
@@ -146,7 +158,8 @@
 			</div>
 			<div class="col-md-6">
 				<h2>
-					Thông tin đơn đặt hàng: #<%=orderId%></h2>
+					Thông tin đơn đặt hàng:
+					<%=orderId%></h2>
 				<p>
 					Ngày đặt hàng:
 					<%=orderDate%></p>

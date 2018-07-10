@@ -15,6 +15,9 @@
 	//get total price map
 	Map<String, String> mapTotalPrice = OrderDAO.getLoadTotalPrice();
 %>
+<%
+	request.getSession().removeAttribute("addOrderId");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -110,7 +113,7 @@
 					%>
 					<td><%=total%></td>
 					<td>		<a
-						href="customer?function=edit&id=<%=order.getOrderId()%>"><button
+						href="order?function=edit&id=<%=order.getOrderId()%>"><button
 								class="btn btn-primary btn-sm">Sửa</button></a> 
 								<a
 						href="order?function=delete&id=<%=order.getOrderId()%>"><button

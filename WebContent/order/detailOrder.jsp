@@ -61,13 +61,23 @@
 		<%
 			Order order = OrderDAO.orderMap.get(id);
 		%>
-		<h2>Thông tin đơn đặt hàng: #<%=order.getOrderId()%></h2>
+		<h2>
+			Thông tin đơn đặt hàng: #<%=order.getOrderId()%></h2>
 		<p>
 			Ngày đặt hàng:
 			<%=order.getOrderDate()%></p>
 		<p>
 			Tổng giá trị đơn hàng:
-			<%=mapTotalPrice.get(order.getOrderId())%></p>
+			<%
+			String totalPrice;
+			String totalOrderPrice = mapTotalPrice.get(order.getOrderId());
+			if (totalOrderPrice == null) {
+				totalPrice = "0  &#8363;";
+			} else {
+				totalPrice = totalOrderPrice;
+			}
+		%>
+			<%=totalPrice%></p>
 		<!-- order item datatable -->
 		<table id="datatable-buttons"
 			class="table table-striped table-bordered">

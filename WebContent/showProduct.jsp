@@ -9,6 +9,9 @@
 <%
 	Map<String, Product> mapProduct = ProductDAO.productMap;
 %>
+<%
+	request.getSession().removeAttribute("addOrderId");
+%>
 <!DOCTYPE html>
 <html>
 <head>

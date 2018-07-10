@@ -50,6 +50,9 @@ public class OrderController extends HttpServlet {
 	private void deleteOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String id = request.getParameter("id");
 		new OrderDAO().delete(id);
+		//update dropdown
+		OrderDAO.orderMap = OrderDAO.getLoadOrderDTB();
+		OrderDAO.setOrderDate = OrderDAO.getLoadDate();
 		response.sendRedirect("showOrder.jsp");
 	}
 
@@ -62,6 +65,9 @@ public class OrderController extends HttpServlet {
 			String orderDate = request.getParameter("orderDate");
 			String orderId = IdGenerator.IDGen("OD");
 			new OrderDAO().add(new Order(orderId, orderDate, customerId));
+			//update dropdown
+			OrderDAO.orderMap = OrderDAO.getLoadOrderDTB();
+			OrderDAO.setOrderDate = OrderDAO.getLoadDate();
 			//
 			request.getSession().setAttribute("addOrderId", orderId);
 			RequestDispatcher selectDispatcher = request.getRequestDispatcher("order/addOrder.jsp");

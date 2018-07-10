@@ -7,6 +7,9 @@
 <%
 	Map<String, Customer> mapCustomer = CustomerDAO.customerMap;
 %>
+<%
+	request.getSession().removeAttribute("addOrderId");
+%>
 <!DOCTYPE html>
 <html>
 <head>
