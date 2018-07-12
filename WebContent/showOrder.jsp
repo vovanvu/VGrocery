@@ -108,17 +108,16 @@
 					<%
 						String total = mapTotalPrice.get(order.getOrderId());
 							if (total == null) {
-								total = "0 \u20AB";
+								//remove DONG because cant sort with currency symbol
+								//total = "0 \u20AB";
+								total = "0";
 							}
 					%>
 					<td><%=total%></td>
-					<td>		<a
-						href="order?function=edit&id=<%=order.getOrderId()%>"><button
-								class="btn btn-primary btn-sm">Sửa</button></a> 
-								<a
+					<td><a href="order?function=edit&id=<%=order.getOrderId()%>"><button
+								class="btn btn-primary btn-sm">Sửa</button></a> <a
 						href="order?function=delete&id=<%=order.getOrderId()%>"><button
-								class="btn btn-warning btn-sm">Xoá</button></a>
-								 <a
+								class="btn btn-warning btn-sm">Xoá</button></a> <a
 						href="order?function=detail&id=<%=order.getOrderId()%>"><button
 								class="btn btn-default btn-sm">Chi tiết</button></a></td>
 
@@ -129,24 +128,23 @@
 			</tbody>
 		</table>
 	</div>
+	<!-- jQuery -->
+	<script src="vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Datatables -->
+	<script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script
+		src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script
+		src="vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script src="vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+
+	<!-- Custom Theme Scripts -->
+	<script src="build/js/custom.min.js"></script>
 </body>
-<!-- jQuery -->
-<script src="vendors/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
 
-<!-- Datatables -->
-<script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script
-	src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script
-	src="vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-<script src="vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-
-<!-- Custom Theme Scripts -->
-<script src="build/js/custom.min.js"></script>
 </html>

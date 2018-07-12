@@ -16,7 +16,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/form-validate.js"></script>
+<script src="js/productValidate.js"></script>
 
 </head>
 <body>
@@ -53,9 +53,7 @@
 				<label class="control-label col-sm-3" for="producerID">Tên
 					nhà cung cấp</label>
 				<div class="col-sm-6 ">
-					<%--<input type="text" class="form-control" id="producerID"
-						placeholder="Nhập mã nhà cung cấp" list="listProducer"
-						name="producerID" value="${producerID}"> --%>
+					<%-- --%>
 					<select name="producerID" class="form-control">
 					<option value="" selected disabled hidden>Chọn nhà cung cấp</option>
 						<%
@@ -77,7 +75,9 @@
 			</div>
 
 
-			<%--
+			<%--<input type="text" class="form-control" id="producerID"
+						placeholder="Nhập mã nhà cung cấp" list="listProducer"
+						name="producerID" value="${producerID}">
 		<datalist id="listProducer"> <%
  	for (Producer producer : ProducerDAO.producerMap.values()) {
  %>

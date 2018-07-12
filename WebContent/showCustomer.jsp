@@ -95,8 +95,6 @@
 <script src="vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-
 <!-- Datatables -->
 <script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

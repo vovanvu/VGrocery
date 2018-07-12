@@ -76,7 +76,9 @@
 					<td><%=product.getProductName()%></td>
 					<%
 						String price = product.getPrice();
-							price = ThousandSeparator.thousandSeparator(price) + " &#8363;";
+							//remove DONG because cant sort with currency symbol
+							//price = ThousandSeparator.thousandSeparator(price) + " &#8363;";
+							price = ThousandSeparator.thousandSeparator(price);
 					%>
 					<td><%=price%></td>
 					<td><%=ProducerDAO.producerMap.get(product.getProducerID()).getProducerName()%></td>

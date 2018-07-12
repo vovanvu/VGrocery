@@ -24,7 +24,9 @@ public class OrderItemDAO implements ObjectDAO {
 				String orderId = rs.getString(1);
 				String totalPrice = rs.getString(2);
 				totalPrice = ThousandSeparator.thousandSeparator(totalPrice);
-				totalPrice = totalPrice + " \u20AB";
+				//remove DONG because cant sort with currency symbol
+				//totalPrice = totalPrice + " \u20AB";
+				totalPrice = totalPrice;
 				res.put(orderId, totalPrice);
 			}
 			return res;

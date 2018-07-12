@@ -72,9 +72,10 @@
 			String totalPrice;
 			String totalOrderPrice = mapTotalPrice.get(order.getOrderId());
 			if (totalOrderPrice == null) {
-				totalPrice = "0  &#8363;";
+				//remove DONG (&#8363;) because cant sort with currency symbol
+				totalPrice = "0";
 			} else {
-				totalPrice = totalOrderPrice;
+				totalPrice = totalOrderPrice+" &#8363;";
 			}
 		%>
 			<%=totalPrice%></p>
@@ -101,7 +102,8 @@
 					<td><%=ProductDAO.productMap.get(orderItem.getProductID()).getProductName()%></td>
 					<td><%=orderItem.getQuantity()%> <%
  	String price = ProductDAO.productMap.get(orderItem.getProductID()).getPrice();
- 		price = ThousandSeparator.thousandSeparator(price) + " &#8363;";
+					//remove DONG (&#8363;) because cant sort with currency symbol
+ 		price = ThousandSeparator.thousandSeparator(price);
  %>
 					<td><%=price%></td>
 					<td><%=mapTotalItemPrice.get(orderItem.getOrderItemId())%></td>
